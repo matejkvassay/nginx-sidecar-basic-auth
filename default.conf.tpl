@@ -11,7 +11,9 @@ map $http_upgrade $connection_upgrade {
 
 # Server Definition
 server {
-    listen {{ .Env.PORT }};
+    listen {{ .Env.PORT }} tls;
+    ssl_certificate    /etc/ssl/certs/smart-fi.crt;
+    ssl_certificate_key /etc/ssl/private/smart-fi-private.key;
 
 {{ if .Env.WEBSOCKET_PATH }}
     location {{ .Env.WEBSOCKET_PATH }} {
