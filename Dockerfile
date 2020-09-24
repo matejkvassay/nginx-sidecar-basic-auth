@@ -1,5 +1,9 @@
 FROM nginx:alpine
-MAINTAINER "Yannick Scherer <yannick.scherer@gmail.com>"
+MAINTAINER "Matej Kvassay matej.kvassay@icloud.com"
+
+# generate ssl certificates
+RUN apk add --update openssl && rm -rf /var/cache/apk/*
+RUN sudo openssl req -x509 -nodes -days 5000 -newkey rsa:2048 -keyout /etc/ssl/private/smart-fi-private.key -out  /etc/ssl/certs/smart-fi.crt;
 
 # --------------------
 # METADATA
